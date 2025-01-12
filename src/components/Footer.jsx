@@ -2,10 +2,10 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 function Footer() {
   return (
-    <div className='d-flex justify-content-center align-items-center flex-column flex-wrap W-100' style={{ width: '100%', height: '300px' ,backgroundColor:'#fff8dc' }}>
+    <div className='d-flex justify-content-center align-items-center flex-column flex-wrap W-100' style={{ width: '100%', height: '300px' ,backgroundColor:'#52a447' }}>
     <div className="footer-content d-flex  justify-content-evenly   w-100">
         <div className="website "style={{ width: '400px' }}>
-            <h4 style={{color:'black',overflow:'hidden'}}><i class="fa-solid fa-list-check"></i>{" "}Project Fair</h4>
+            <h4 style={{color:'black',overflow:'hidden'}}><i className="fa-solid fa-list-check"></i>{" "}Project Fair</h4>
             <h6 style={{color:'black',overflow:'hidden'}}>Designed and built with all the love in the world by the Bootstrap team with the help of our contributors.</h6>
             <h6 style={{color:'black',overflow:'hidden'}}>Code licensed MIT, docs CC BY 3.0.</h6>
             <p>Currently v5.3.3.</p>
@@ -35,7 +35,7 @@ function Footer() {
         <div className='icons mt-3 d-flex justify-content-evenly fs-4'>
             <Link to={'https://getbootstrap.com/'} style={{ textDecoration: 'none', color: 'black' }} ><i className="fa-brands fa-twitter overflow-hidden"></i></Link>
             <Link to={'https://react-bootstrap.netlify.app/'} style={{ textDecoration: 'none', color: 'black' }} ><i className="fa-brands fa-linkedin overflow-hidden"></i></Link>
-            <Link to={'https://www.npmjs.com/package/react-router-dom'}  style={{ textDecoration: 'none', color: 'black' }} ><i class="fa-brands fa-github overflow-hidden"></i></Link>
+            <Link to={'https://www.npmjs.com/package/react-router-dom'}  style={{ textDecoration: 'none', color: 'black' }} ><i className="fa-brands fa-github overflow-hidden"></i></Link>
             <Link to={'https://www.npmjs.com/package/react-router-dom'}  style={{ textDecoration: 'none', color: 'black' }} ><i className="fa-brands fa-facebook overflow-hidden"></i></Link>
 
     </div>
