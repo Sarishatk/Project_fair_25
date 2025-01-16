@@ -4,8 +4,8 @@ function Footer() {
   return (
     <div className='d-flex justify-content-center align-items-center flex-column flex-wrap W-100' style={{ width: '100%', height: '300px' ,backgroundColor:'#52a447' }}>
     <div className="footer-content d-flex  justify-content-evenly   w-100">
-        <div className="website "style={{ width: '400px' }}>
-            <h4 style={{color:'black',overflow:'hidden'}}><i className="fa-solid fa-list-check"></i>{" "}Project Fair</h4>
+        <div className="websi "style={{ width: '400px' }}>
+            <h4 style={{color:'black',overflow:'hidden'}}><i className="fa-solid fa-list-check   align-items-center"></i>{" "}Project Fair</h4>
             <h6 style={{color:'black',overflow:'hidden'}}>Designed and built with all the love in the world by the Bootstrap team with the help of our contributors.</h6>
             <h6 style={{color:'black',overflow:'hidden'}}>Code licensed MIT, docs CC BY 3.0.</h6>
             <p>Currently v5.3.3.</p>
