@@ -14,28 +14,13 @@ function Auth({register}) {
                         <img style={{width:'100%'}} src="https://img.freepik.com/free-vector/computer-login-concept-illustration_114360-7892.jpg?semt=ais_hybrid" alt="" />
                     </div>
                     <div className="col-lg-6">
-                        <div className="d-flex align-items-center flex-column">
-                        <h5 style={{fontSize:'40px'}} className='fw-bolder d-flex align-items-center ' ><i className="fa-solid fa-list-check overflow-hidden"></i>Project Fair</h5>
-                        <h5 className='fw-bolder mt-2vpb-3 text-light'>
-                        {
-                            isRegisterForm ? 'sign up your account':'sign in to your account'
-                        }
-                            
-                        </h5>
-                        <Form className='text-light w-100'>
-                    
-                       {
-                        isRegisterForm &&
-
                         
-                       }
-                        </Form>
                         </div>
                     </div>
                 </div>
               </div>
           </div>
-    </div>
+  
   
   )
 }
