@@ -1,6 +1,6 @@
 import React from 'react'
 import {  Link } from 'react-router-dom'
-import Form from 'react-bootstrap/Form';
+import Form from 'react-bootstrap';
 function Auth({register}) {
     const isRegisterForm = register?true:false
   return (
