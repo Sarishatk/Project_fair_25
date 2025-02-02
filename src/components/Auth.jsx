@@ -1,6 +1,6 @@
 import React from 'react'
 import {  Link } from 'react-router-dom'
-import Form from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 function Auth({register}) {
     const isRegisterForm = register?true:false
   return (
@@ -17,9 +17,27 @@ function Auth({register}) {
                        <div className='d-flex align-items-center flex-column'></div> 
                        <h1 style={{fontSize:'20px'}} className='fw-bolder d-flex align-items-center text-light' ><i className="fa-solid fa-list-check overflow-hidden"></i>Project Fair</h1>
                         <h5 className='fw-bolder mt-4 pb-3 text-light'>
-{
-  isRegisterForm ? 'sign up Your Account':'sign in Your Account'
-}
+                       {
+                                 isRegisterForm ? 'sign up Your Account':'sign in Your Account'
+                          }
+                          <Form className='text-light w-100'>
+
+                          {
+                          isRegisterForm &&
+                          <Form.Group className='mb-3' controlId="formBasicName">
+                            <Form.Group type='text' placeholder='username'></Form.Group>
+                          </Form.Group>
+
+                           }
+                           <Form.Group className='mb-3' controlId="formBasicEmail">
+                            <Form.Group type='text' placeholder='EmailId'></Form.Group>
+                          </Form.Group>
+                          <Form.Group className='mb-3' controlId="formBasicpswd">
+                            <Form.Group type='text' placeholder='Pasword'></Form.Group>
+                          </Form.Group>
+
+
+                          </Form>
                         </h5>
                         </div>
                     </div>
