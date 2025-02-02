@@ -1,11 +1,11 @@
 import React from 'react'
 import {  Link } from 'react-router-dom'
-import Form from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 function Auth({register}) {
     const isRegisterForm = register?true:false
   return (
     
-        <div style={{width:'100%',height:'100vh'}} className='d-flex align-items-center justify-content-center'>
+        <div style="width:'100%',height:'100vh" className='d-flex align-items-center justify-content-center'>
           <div className='w-75 container'>
               <Link to={'/'} style={{textDecoraton:'none',color:'blue'}}><i className="fa-solid fa-arrow-left me-1"></i>Back to Home</Link>
               <div className="card shadow p-5 bg-success">
@@ -35,7 +35,6 @@ function Auth({register}) {
                           <Form.Group className='mb-3' controlId="formBasicpswd">
                             <Form.Group type='text' placeholder='Pasword'></Form.Group>
                           </Form.Group>
-
 
                           </Form>
                         </h5>
