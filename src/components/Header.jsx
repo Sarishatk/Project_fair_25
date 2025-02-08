@@ -11,6 +11,7 @@ function Header() {
           <i className="fa-solid fa-list-check"></i>
             Project Fair</Link>
           </Navbar.Brand>
+          <div className='btn btn-linkms-auto text-danger fw-bolder fs-5 d-flex align-items-center '>Logout<i className="fa-solid fa-right-from-bracket"></i></div>
         </Container>
       </Navbar>
     </>
