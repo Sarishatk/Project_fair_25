@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navbar,Container} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
-function Header() {
+function Header({insideDashboard}) {
   return (
     <>
        <Navbar  style={{backgroundColor:'#52a447'}} className='top-0 w-100'>
@@ -11,8 +11,11 @@ function Header() {
           <i className="fa-solid fa-list-check"></i>
             Project Fair</Link>
           </Navbar.Brand>
-          <div className='btn btn-linkms-auto text-danger fw-bolder fs-5 d-flex align-items-center '>Logout<i className="fa-solid fa-right-from-bracket"></i></div>
-        </Container>
+{
+           insideDashboard &&
+           <div className='btn btn-linkms-auto text-info fw-bolder fs-5 d-flex align-items-center '>Logout<i className="fa-solid fa-right-from-bracket"></i></div>
+  
+}        </Container>
       </Navbar>
     </>
   )
