@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 function Header() {
   return (
     <>
-       <Navbar  style={{backgroundColor:'#52a447'}} className='position-fixed top-0 w-100'>
+       <Navbar  style={{backgroundColor:'#52a447'}} className='top-0 w-100'>
         <Container>
           <Navbar.Brand >
             <Link to={'/'} style={{textDecoration:'none',color:'white'}} className='fw-bolder d-flex w-100 align-items-center' >

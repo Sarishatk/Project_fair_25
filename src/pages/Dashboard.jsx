@@ -6,8 +6,8 @@ function Dashboard() {
     <>
   
     <Header/>
+    <div style={{ marginTop: '10px' }}>hello</div>
 
-<div style={{marginTop:'10px'}}>vtrgbthn</div>
 </>
   )
 }
