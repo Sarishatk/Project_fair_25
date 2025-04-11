@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Collapse } from 'react-bootstrap';
-useState
+
 function Profile() {
   const [open, setOpen] = useState(false);
 
