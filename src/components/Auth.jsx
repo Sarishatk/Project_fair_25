@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {  Link } from 'react-router-dom'
 import Form from 'react-bootstrap/Form';
 function Auth({register}) {
+const [userData,setUserData] =  useState({
+username:"",password:"",email:""
+})
+const onHandleRegister = (e)=>{
+  e.preventDefault()
+  
+} 
+
+
     const isRegisterForm = register?true:false
   return (
+    
     
         <div style={{width:'100%',height:'100vh'}} className='d-flex align-items-center justify-content-center'>
           <div className='w-75 container'>
@@ -25,22 +35,28 @@ function Auth({register}) {
                           {
                           isRegisterForm &&
                           <Form.Group className='mb-3 rounded-pill ' controlId="formBasicName">
-                                 <Form.Control type='text' placeholder='Username' />
+                                 <Form.Control type='text' placeholder='Username' value={userData.username} onChange={e=>setUserData({...userData,username:e.target.value})
+                                 } />
                           </Form.Group>
 
 
                            }
                                 <Form.Group className='mb-3 rounded-pill' controlId="formBasicEmail">
-                                    <Form.Control type='email' placeholder='Email ID' />
+                                    <Form.Control type='email' placeholder='Email ID'  
+                                    value={userData.email} onChange={e=>setUserData({...userData,email:e.target.value})
+                                  } 
+                                     />
                                      </Form.Group>
 
                           <Form.Group className='mb-3 rounded-pill' controlId="formBasicpswd">
-                            <Form.Control type='text' placeholder='Pasword'></Form.Control>
+                            <Form.Control type='text' placeholder='Pasword' 
+                            value={userData.password} onChange={e=>setUserData({...userData,password:e.target.value})
+                          } ></Form.Control>
                           </Form.Group>
 {
               isRegisterForm ?
               <div>
-                <button className='btn btn-primary  rounded-pill'>register</button>
+                <button onClick={onHandleRegister} className='btn btn-primary  rounded-pill'>register</button>
                 <p>Already have Account? Click here to <Link to={'/login'}>Login</Link></p>
               </div>:<div>
               <button className='btn btn-primary rounded-pill'>Login</button>
