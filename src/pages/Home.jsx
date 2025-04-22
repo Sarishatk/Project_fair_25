@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row,Col } from 'react-bootstrap'
 import ProjectCard from '../components/ProjectCard'
 import { Link } from 'react-router-dom'
+ 
+ 
+function Home(){
+  const [logged,setLogged] = useState(false)
 
-function Home() {
+  useEffect(()=>{
+    if(sessionStorage.getItem("token")){
+  setLogged(true)
+    }else{
+      setLogged(false)
+    }
+   })
   return (
    
     <>
@@ -14,10 +24,13 @@ function Home() {
           <Col sm={12} md={6}>
             <h1 style={{fontSize:'50px'}} className='fw-bolder d-flex align-items-center ' ><i className="fa-solid fa-list-check overflow-hidden "></i>Project Fair</h1>
 
-            <p>one stop destination for all software development projects.where user can add and manage their projects.As well as access all projects available in our website...what are you waiting forr!!!</p>
-          <Link to={'/login'}  className='btn btn-warning'>Start to Explore <i className="fa-solid fa-arrow-right ms-2"></i>  </Link>
+            <p style={{fontSize:'25px'}}>one stop destination for all software development projects.where user can add and manage their projects.As well as access all projects available in our website...what are you waiting forr!!!</p>
+          {logged?
+            <Link to={'/login'}  className='btn btn-warning'>Manage your projects <i className="fa-solid fa-arrow-right ms-2"></i>  </Link>:
+          <Link to={'/login'}  className='btn btn-warning'>start to Explore <i className="fa-solid fa-arrow-right ms-2"></i>  </Link>}
+
           </Col>
-          <Col><img style={{width:'400px'}} src="https://avatars.githubusercontent.com/u/87497641?v=4" alt="" /></Col>
+          <Col style={{marginTop:'100px',marginLeft:'100px'}}><img style={{width:'600px'}} src="https://avatars.githubusercontent.com/u/87497641?v=4" alt="" /></Col>
          </div> 
       </div>
       {/* all projects */}

@@ -1,15 +1,61 @@
 import React, { useState } from 'react'
-import {  Link } from 'react-router-dom'
+import {  Link, useNavigate } from 'react-router-dom'
 import Form from 'react-bootstrap/Form';
+import { ToastContainer, toast } from 'react-toastify';
+import { loginAPI, registerAPI } from '../services/allAPI';
 function Auth({register}) {
+  const navigate = useNavigate()
 const [userData,setUserData] =  useState({
 username:"",password:"",email:""
 })
-const onHandleRegister = (e)=>{
+const onHandleRegister =async (e)=>{
   e.preventDefault()
+  // inorder to check user enter 3 data
+  const {username,email,password} = userData  
+  if(!username || !email || !password){
+    toast.info("please fill the form")
+  }else{
+const result = await registerAPI(userData)
+console.log(result);
+
+if(result.status===200){
+  toast.success(`${result.data.username} has registerd successfully`)
+  setUserData({
+    username:"",password:"",email:""
+  })
+    navigate('/login ')
+}else{
+toast.warning(result.response.data)
+  console.log(result);
   
+}
+  }
+
 } 
 
+const onhandlelogin =async (e)=>{
+  e.preventDefault()
+  const {email,password} = userData
+  if(!email || !password){
+    toast.info("pls fill the form")
+  }else{
+    const result = await loginAPI(userData)
+    console.log(result);
+    if(result.status===200){
+sessionStorage.setItem("existingUser",JSON.stringify(result.data.existingUser))
+sessionStorage.setItem("token",result.data.token)
+      setUserData({
+        email:"",password:""
+      })
+      navigate('/')
+    }
+    else{
+      toast.warning(result.response.data)
+        console.log(result);
+        
+      }
+  }
+}
 
     const isRegisterForm = register?true:false
   return (
@@ -59,7 +105,7 @@ const onHandleRegister = (e)=>{
                 <button onClick={onHandleRegister} className='btn btn-primary  rounded-pill'>register</button>
                 <p>Already have Account? Click here to <Link to={'/login'}>Login</Link></p>
               </div>:<div>
-              <button className='btn btn-primary rounded-pill'>Login</button>
+              <button onClick={onhandlelogin} className='btn btn-primary rounded-pill'>Login</button>
               <p>New User? Click here to <Link to={'/register'}>Register</Link></p>
               </div>
 }
@@ -70,6 +116,7 @@ const onHandleRegister = (e)=>{
                     </div>
                 </div>
               </div>
+              <ToastContainer position='top-right' autoClose={2000} theme='colored'/>
           </div>
   
   
