@@ -22,7 +22,7 @@ const [projectDetails,setprojectDetails] = useState({
     <>
     <div className='mt-2'>
       
-       <Button variant="primary" onClick={handlShow}>
+       <Button variant="primary" onClick={handleShow}>
           Add Project
         </Button>
     </div>
