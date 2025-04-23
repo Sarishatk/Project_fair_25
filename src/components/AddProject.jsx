@@ -8,7 +8,7 @@ function AddProject() {
   const [show, setShow] = useState(false);
 
 const [projectDetails,setprojectDetails] = useState({
-  title:"",language:"",overview:"",github:"",projectImage:""
+  title:"",language:"",overview:"",github:"",projectImage:"",website:""
  
   
 })
@@ -40,7 +40,7 @@ const [projectDetails,setprojectDetails] = useState({
 <div className=' mb-3 '><input type='text' className='form-control' placeholder='project title' value={projectDetails.title} onChange={e=>setprojectDetails({...projectDetails,title:e.target.value})}></input></div>
 <div className='mb-3'><input type='text' className='form-control ' placeholder='Language used'  value={projectDetails.language} onChange={e=>setprojectDetails({...projectDetails,language:e.target.value})} ></input></div>
 <div className='mb-3'><input type='text' className='form-control ' placeholder='GitHub Link' value={projectDetails.github} onChange={e=>setprojectDetails({...projectDetails,github:e.target.value})}></input></div>
-<div className='mb-3'><input type='text' className='form-control ' placeholder='Website Link' value={projectDetails.language} onChange={e=>setprojectDetails({...projectDetails,language:e.target.value})}></input></div>
+<div className='mb-3'><input type='text' className='form-control ' placeholder='Website Link' value={projectDetails.website} onChange={e=>setprojectDetails({...projectDetails,website:e.target.value})}></input></div>
 <div className='mb-3'><input type='text' className='form-control ' placeholder='OverView' value={projectDetails.overview} onChange={e=>setprojectDetails({...projectDetails,overview:e.target.value})}></input></div>
   </div>
 </div>
