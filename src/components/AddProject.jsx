@@ -7,8 +7,17 @@ import Modal from 'react-bootstrap/Modal';
 function AddProject() {
   const [show, setShow] = useState(false);
 
+const [projectDetails,setprojectDetails] = useState({
+  title:"",language:"",overview:"",github:"",projectImage:""
+ 
+  
+})
+
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  console.log(projectDetails);
+  
   return (
     <>
     <div className='mt-2'>
@@ -28,11 +37,11 @@ function AddProject() {
 <img style={{height:'300px',width:'300px'}} className='image-fluid ' src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" alt="profile picture" />
   </div>
   <div className="col "> 
-<div className=' mb-3 '><input type='text' className='form-control' placeholder='project title'></input></div>
-<div className='mb-3'><input type='text' className='form-control ' placeholder='Language used'></input></div>
-<div className='mb-3'><input type='text' className='form-control ' placeholder='GitHub Link'></input></div>
-<div className='mb-3'><input type='text' className='form-control ' placeholder='Website Link'></input></div>
-<div className='mb-3'><input type='text' className='form-control ' placeholder='OverView'></input></div>
+<div className=' mb-3 '><input type='text' className='form-control' placeholder='project title' value={projectDetails.title} onChange={e=>setprojectDetails({...projectDetails,title:e.target.value})}></input></div>
+<div className='mb-3'><input type='text' className='form-control ' placeholder='Language used'  value={projectDetails.language} onChange={e=>setprojectDetails({...projectDetails,language:e.target.value})} ></input></div>
+<div className='mb-3'><input type='text' className='form-control ' placeholder='GitHub Link' value={projectDetails.github} onChange={e=>setprojectDetails({...projectDetails,github:e.target.value})}></input></div>
+<div className='mb-3'><input type='text' className='form-control ' placeholder='Website Link' value={projectDetails.language} onChange={e=>setprojectDetails({...projectDetails,language:e.target.value})}></input></div>
+<div className='mb-3'><input type='text' className='form-control ' placeholder='OverView' value={projectDetails.overview} onChange={e=>setprojectDetails({...projectDetails,overview:e.target.value})}></input></div>
   </div>
 </div>
 

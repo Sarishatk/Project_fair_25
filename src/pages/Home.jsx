@@ -13,7 +13,7 @@ function Home(){
     }else{
       setLogged(false)
     }
-   })
+   },[])
   return (
    
     <>
@@ -26,7 +26,7 @@ function Home(){
 
             <p style={{fontSize:'25px'}}>one stop destination for all software development projects.where user can add and manage their projects.As well as access all projects available in our website...what are you waiting forr!!!</p>
           {logged?
-            <Link to={'/login'}  className='btn btn-warning'>Manage your projects <i className="fa-solid fa-arrow-right ms-2"></i>  </Link>:
+            <Link to={'/dashboard'}  className='btn btn-warning'>Manage your projects <i className="fa-solid fa-arrow-right ms-2"></i>  </Link>:
           <Link to={'/login'}  className='btn btn-warning'>start to Explore <i className="fa-solid fa-arrow-right ms-2"></i>  </Link>}
 
           </Col>
