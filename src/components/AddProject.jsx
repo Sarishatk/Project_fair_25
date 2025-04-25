@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { ToastContainer, toast } from 'react-toastify';
 import { useState,useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -12,7 +12,44 @@ const [projectDetails,setprojectDetails] = useState({
   title:"",language:"",overview:"",github:"",projectImage:"",website:""
  
   
+  
 })
+
+const [token,setToken] = useState("")
+const handleAdd = async(e)=>{
+e.preventDefault
+const {title,language,overview,projectImage,github,website} = projectDetails
+if(!title || !language|| !overview ||!projectImage || !github ||!website ){
+toast.info("please fill the form")
+}else{
+  const reqBody = new FormData()
+   reqBody.append("title",title)
+   reqBody.append("language",language)
+   reqBody.append("overview",overview)
+   reqBody.append("projectImage",projectImage)
+   reqBody.append("github",github)
+   reqBody.append("website",website)
+  
+if(token)
+  { const reqHeader = {
+    "content-type":"multipart/form-data",
+    "Authorization":`Bearer ${token}`
+   }}
+   const result =  await addProject(reqBody,reqHeader)
+   console.log(result);
+   if(result===200){
+    console.log(result.data);
+    
+   }else{
+    console.log(result);
+    console.log(result.data.response);
+    
+    
+   }
+    
+
+}
+}
 
 
   const handleClose = () => {
@@ -29,6 +66,14 @@ if(projectDetails.projectImage){
 }
   },[projectDetails.projectImage])
 
+
+  useEffect(()=>{
+    if(sessionStorage.getItem("token")){
+      setToken(sessionStorage.getItem("tokem"))
+    }else{
+      setToken("")
+    }
+  })
   
   return (
     <>
@@ -72,7 +117,7 @@ if(projectDetails.projectImage){
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleAdd}>
             Add
           </Button>
           <Button variant="primary" onClick={handleClose}>
@@ -80,6 +125,7 @@ if(projectDetails.projectImage){
           </Button>
         </Modal.Footer>
       </Modal>
+       <ToastContainer position='top-right' autoClose={2000} theme='colored'/>
     </>
   )
 }
