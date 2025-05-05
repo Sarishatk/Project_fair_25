@@ -18,40 +18,44 @@ function AddProject() {
   const [token, setToken] = useState("")
 
   const handleAdd = async (e) => {
-    e.preventDefault(); // ✅ Fix: add parentheses
-    const { title, language, overview, projectImage, github, website } = projectDetails
-
+    e.preventDefault();
+    const { title, language, overview, projectImage, github, website } = projectDetails;
+  
     if (!title || !language || !overview || !projectImage || !github || !website) {
-      toast.info("please fill the form")
+      toast.info("Please fill the form");
     } else {
-      const reqBody = new FormData()
-      reqBody.append("title", title)
-      reqBody.append("language", language)
-      reqBody.append("overview", overview)
-      reqBody.append("projectImage", projectImage)
-      reqBody.append("github", github)
-      reqBody.append("website", website)
-
-      let reqHeader = {} // ✅ Fix: define reqHeader in outer scope
+      const reqBody = new FormData();
+      reqBody.append("title", title);
+      reqBody.append("language", language);
+      reqBody.append("overview", overview);
+      reqBody.append("projectImage", projectImage);
+      reqBody.append("github", github);
+      reqBody.append("website", website);
+  
+      let reqHeader = {};
       if (token) {
         reqHeader = {
           "content-type": "multipart/form-data",
-          "Authorization": `Bearer ${token}`
-        }
-        const result = await addProject(reqBody, reqHeader) // ✅ Fix: make sure addProject is defined
-      console.log(result);
-
-      if (result === 200) {
-        console.log(result.data);
-      } else {
-        console.log(result);
-        console.log(result.data.response);
+          "Authorization": `Bearer ${token}`,
+        };
+  
+        try{  const result = await addProject(reqBody, reqHeader);
+          if (result.status === 200) {
+            console.log(result.data);
+            handleClose();
+            alert("Project added");
+          } else {
+            toast.warning(result.data.response);
+          }}
+          catch (error) {
+            console.error("Caught error:", error);
+            toast.error(error?.response?.data?.message || error.message || "Request failed"); // ✅ safe access
+          }
+       
       }
-      }
-
-      
     }
-  }
+  };
+  
 
   const handleClose = () => {
     setShow(false);
