@@ -16,7 +16,6 @@ function AddProject() {
   })
 
   const [token, setToken] = useState("")
-
   const handleAdd = async (e) => {
     e.preventDefault();
     const { title, language, overview, projectImage, github, website } = projectDetails;
@@ -26,7 +25,7 @@ function AddProject() {
     } else {
       const reqBody = new FormData();
       reqBody.append("title", title);
-      reqBody.append("language", language);
+      reqBody.append("language", language); // ✅ fixed
       reqBody.append("overview", overview);
       reqBody.append("projectImage", projectImage);
       reqBody.append("github", github);
@@ -39,23 +38,23 @@ function AddProject() {
           "Authorization": `Bearer ${token}`,
         };
   
-        try{  const result = await addProject(reqBody, reqHeader);
-          if (result.status === 200) {
+        try {
+          const result = await addProject(reqBody, reqHeader);
+          if (result.status === 201) {
             console.log(result.data);
             handleClose();
-            alert("Project added");
+            toast.success("Project added"); // ✅ now this will show
           } else {
-            toast.warning(result.data.response);
-          }}
-          catch (error) {
-            console.error("Caught error:", error);
-            toast.error(error?.response?.data?.message || error.message || "Request failed"); // ✅ safe access
+            toast.warning(result?.data?.message || "Something went wrong");
           }
-       
+        } catch (error) {
+          console.error("Caught error:", error);
+          toast.error(error?.response?.data?.message || error.message || "Request failed");
+        }
       }
     }
   };
-  
+    
 
   const handleClose = () => {
     setShow(false);
