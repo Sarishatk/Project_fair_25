@@ -134,4 +134,4 @@ function AddProject() {
   )
 }
 
-export default 
+export default AddProject
