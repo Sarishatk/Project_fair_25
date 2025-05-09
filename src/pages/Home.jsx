@@ -2,10 +2,26 @@ import React, { useEffect, useState } from 'react'
 import { Row,Col } from 'react-bootstrap'
 import ProjectCard from '../components/ProjectCard'
 import { Link } from 'react-router-dom'
- 
+import { HomeProject } from '../services/allAPI'; 
+
  
 function Home(){
   const [logged,setLogged] = useState(false)
+  const [HomeProjects,setHomeProjects] = useState([])
+  const getHomeProjects = async () => {
+    try {
+      const result = await HomeProject();
+      if (result.status === 200) {
+        setHomeProjects(result.data);
+      } else {
+        console.log('Unexpected response:', result);
+      }
+    } catch (error) {
+      console.log('API Error:', error);
+    }
+  };
+  
+console.log(HomeProjects);
 
   useEffect(()=>{
     if(sessionStorage.getItem("token")){
@@ -13,6 +29,8 @@ function Home(){
     }else{
       setLogged(false)
     }
+getHomeProjects()
+
    },[])
   return (
    
@@ -37,12 +55,19 @@ function Home(){
       <div className="all-projects mt-3">
         <h1 className='text-center mb-2'>Explore our Projects</h1>
         <marquee scrollAmount={25}>
+          
           <Row >
-            <Col cmd={6} sm={12} lg={4}>
-            <ProjectCard />
-            </Col>
-            
+  
+{HomeProjects?.length>0?HomeProjects.map(project=>(   
+         <Col cmd={6} sm={12} lg={4}>
+            <ProjectCard  project={project} />
+                   </Col>
+
+)):null
+}
+
           </Row>
+          
         </marquee>
         <div className="text-center  "><Link to={'/projects'}>View More Projects</Link></div>
 
