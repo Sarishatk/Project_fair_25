@@ -7,7 +7,7 @@ function ProjectCard({project}) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   return (
-    <>
+    <>rv
 
       {project&&<Card className='shadow mb-5' onClick={handleShow}>
       <Card.Img variant="top" src={
@@ -22,7 +22,7 @@ function ProjectCard({project}) {
       </Card.Body>
     </Card>}
 
-    <Modal size='lg' show={show} onHide={handleClose}>
+    {project&&<Modal size='lg' show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Project details</Modal.Title>
         </Modal.Header>
@@ -45,7 +45,7 @@ function ProjectCard({project}) {
                     <a href={project.website}  target='_blank' className='me-3 btn ' ><i class="fa-solid fa-link fa-2x overflow-hidden"></i></a>
                 </div>
         </Modal.Body>
-      </Modal>
+      </Modal>}
     </>
   )
 }
