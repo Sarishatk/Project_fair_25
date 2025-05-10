@@ -7,7 +7,7 @@ function ProjectCard({project}) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   return (
-    <>rv
+    <>
 
       {project&&<Card className='shadow mb-5' onClick={handleShow}>
       <Card.Img variant="top" src={
@@ -29,7 +29,10 @@ function ProjectCard({project}) {
         <Modal.Body>
             <Row>
                 <Col md={6}>
-            <img style={{height:'200px'}} className='img-fluid' src="https://www.figma.com/community/resource/8e950e05-be74-4268-994b-40c43e4f14a6/thumbnail" alt="" />
+            <img style={{height:'200px'}} className='img-fluid' src={
+    project?.projectImage ?? 
+    "https://www.dreamstime.com/photos-images/projects.html"
+  } alt="" />
                 </Col>
                 <Col md={6}>
                 <h2>{project.title}</h2>
