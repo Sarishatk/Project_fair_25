@@ -21,3 +21,5 @@ export const addProject = async(reqBody,reqHeader)=>{
 export const HomeProject = async () => {
     return await commonAPI("GET", `${BASE_URL}/projects/Home-projects`);
   };
+
+//   all projects

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import {Card,Modal,Row,Col} from 'react-bootstrap'
+import { BASE_URL } from '../services/baseUrl';
 function ProjectCard({project}) {
     const [show, setShow] = useState(false);
 
@@ -10,10 +11,12 @@ function ProjectCard({project}) {
     <>
 
       {project&&<Card className='shadow mb-5' onClick={handleShow}>
-      <Card.Img variant="top" src={
-    project?.projectImage ?? 
-    "https://www.dreamstime.com/photos-images/projects.html"
-  }/>
+      <Card.Img variant="top"src={
+  project?.projectImage
+    ? `${BASE_URL}/uploads/${project.projectImage}`
+    : "https://www.dreamstime.com/photos-images/projects.html"
+}
+/>
       <Card.Body>
         <Card.Title>{project.title}</Card.Title>
         <Card.Text>
