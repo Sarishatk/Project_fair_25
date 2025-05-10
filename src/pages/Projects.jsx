@@ -1,8 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import {Row,Col} from 'react-bootstrap';
 import ProjectCard from '../components/ProjectCard'
+import {  allProjectApi} from '../services/allAPI'; 
 function Projects() {
+const [allprojects,setallProjects] = useState([])
+const getAllvideos = async ()=>{
+  if(sessionStorage.getItem("token")){
+    const token = sessionStorage.getItem("token")
+    const reqHeader = {
+      "content-type":"application/json",
+          "Authorization": `Bearer ${token}`,
+    }
+    const result = await  allProjectApi(reqHeader)
+    if(result.status==200){
+      setallProjects(result.data)
+    }else{
+      console.log(result);
+      
+    }
+  }
+}
+
+
+useEffect(()=>{
+  getAllvideos()
+},[])
+
   return (
     <>
       
@@ -20,9 +44,11 @@ function Projects() {
     </div>
   </div>
   <Row className="mt-2 container-fluid">
-    <Col md={6} sm={12} lg={4}>
-      <ProjectCard />
-    </Col>
+  {allprojects?.length > 0 && allprojects.map(project => (
+  <Col md={6} sm={12} lg={4} key={project.id}>
+    <ProjectCard project={project} />
+  </Col>
+))}
   </Row>
 </div>
 
