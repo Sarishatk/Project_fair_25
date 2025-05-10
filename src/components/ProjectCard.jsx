@@ -35,9 +35,9 @@ function ProjectCard({project}) {
   } alt="" />
                 </Col>
                 <Col md={6}>
-                <h2>{project.title}</h2>
-                <p>Project Overview: {project.overview}</p>
-                <p>Language Used:<span className='fw-folder'>{project.language}</span></p>
+                <h2 className='fw-bolder text-info'>{project.title}</h2>
+                <p className=' text-success'>Project Overview: {project.overview}</p>
+                <p  className=' text-danger'>Language Used:{project.language}<span className='fw-folder'>{project.language}</span></p>
                 </Col>
                 
             </Row>
