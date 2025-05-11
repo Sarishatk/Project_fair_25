@@ -5,6 +5,7 @@ import ProjectCard from '../components/ProjectCard'
 import {  allProjectApi} from '../services/allAPI'; 
 function Projects() {
 const [allprojects,setallProjects] = useState([])
+const [secretekey,setsecretekey] = useState("")
 const getAllvideos = async ()=>{
   if(sessionStorage.getItem("token")){
     const token = sessionStorage.getItem("token")
@@ -12,7 +13,7 @@ const getAllvideos = async ()=>{
       "content-type":"application/json",
           "Authorization": `Bearer ${token}`,
     }
-    const result = await  allProjectApi(reqHeader)
+    const result = await  allProjectApi(secretekey,reqHeader)
     if(result.status==200){
       setallProjects(result.data)
     }else{
@@ -35,7 +36,8 @@ useEffect(()=>{
   <h1 className="text-center mb-2">All Projects</h1>
   <div className="d-flex align-items-center justify-content-center">
     <div className="d-flex border w-50 rounded mb-2">
-      <input
+      <input 
+      onChange={e=>setsecretekey(e.target.value)}
         type="text"
         className="form-control"
         placeholder="search projects by technologies used"
