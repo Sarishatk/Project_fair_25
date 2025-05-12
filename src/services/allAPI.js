@@ -23,6 +23,6 @@ export const HomeProject = async () => {
   };
 
 //   all projects
-export const allProjectApi = async (reqHeader) => {
+export const allProjectApi = async (secretekey,reqHeader) => {
     return await commonAPI("GET", `${BASE_URL}/project/all?search=${secretekey}`,"",reqHeader);
   };

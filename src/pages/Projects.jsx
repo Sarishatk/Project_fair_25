@@ -26,7 +26,7 @@ const getAllvideos = async ()=>{
 
 useEffect(()=>{
   getAllvideos()
-},[])
+},[secretekey])
 
   return (
     <>
