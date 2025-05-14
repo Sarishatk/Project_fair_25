@@ -46,17 +46,13 @@ useEffect(()=>{
     </div>
   </div>
   <Row className="mt-2 container-fluid">
-  {allprojects?.length > 0 ? (
-    allprojects.map(project => (
-      <Col md={6} sm={12} lg={4} key={project.id}>
+  {
+    allprojects?.length>0?.allprojects?.map(project=>(
+      <Col md={6} sm={12} lg={4} >
         <ProjectCard project={project} />
       </Col>
-    ))
-  ) : (
-    <p style={{ fontSize: '80px' }} className='fw-bolder text-danger m-5'>
-      Please Login To View More Project
-    </p>
-  )}
+ ))
+  }
 </Row>
 
 </div>
