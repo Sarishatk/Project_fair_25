@@ -19,7 +19,7 @@ function AddProject() {
   const handleAdd = async (e) => {
     e.preventDefault();
     const { title, language, overview, projectImage, github, website } = projectDetails;
-  
+
     if (!title || !language || !overview || !projectImage || !github || !website) {
       toast.info("Please fill the form");
     } else {
@@ -30,14 +30,14 @@ function AddProject() {
       reqBody.append("projectImage", projectImage);
       reqBody.append("github", github);
       reqBody.append("website", website);
-  
+
       let reqHeader = {};
       if (token) {
         reqHeader = {
           "content-type": "multipart/form-data",
           "Authorization": `Bearer ${token}`,
         };
-  
+
         try {
           const result = await addProject(reqBody, reqHeader);
           if (result.status === 201) {
@@ -54,7 +54,7 @@ function AddProject() {
       }
     }
   };
-    
+
 
   const handleClose = () => {
     setShow(false);
