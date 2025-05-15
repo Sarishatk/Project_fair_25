@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
-import {Row, Col, Container, Spinner} from 'react-bootstrap';
+import { Row, Col, Container, Spinner } from 'react-bootstrap';
 import ProjectCard from '../components/ProjectCard'
 import { allProjectApi } from '../services/allAPI';
 
@@ -10,7 +10,7 @@ function Projects() {
   const [loading, setLoading] = useState(true)
 
   const getAllvideos = async () => {
-    if(sessionStorage.getItem("token")){
+    if (sessionStorage.getItem("token")) {
       setLoading(true)
       const token = sessionStorage.getItem("token")
       const reqHeader = {
@@ -18,7 +18,7 @@ function Projects() {
         "Authorization": `Bearer ${token}`,
       }
       const result = await allProjectApi(secretekey, reqHeader)
-      if(result.status === 200){
+      if (result.status === 200) {
         setallProjects(result.data)
       } else {
         console.log(result);
@@ -28,16 +28,16 @@ function Projects() {
   }
   useEffect(() => {
     getAllvideos()
-  }, [secretekey]);return (
+  }, [secretekey]); return (
     <>
-      <Header/>
+      <Header />
       <Container fluid className="py-5 px-4" style={{ marginTop: '60px', backgroundColor: '#f8f9fa' }}>
         <Container>
           <div className="text-center mb-5">
             <span className="badge bg-primary bg-opacity-10 text-primary mb-2 rounded-pill px-3 py-2">
               Project Gallery
             </span>
-            <h1 className="display-4 fw-bold" style={{ 
+            <h1 className="display-4 fw-bold" style={{
               background: 'linear-gradient(45deg, #2196F3, #4CAF50)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
@@ -49,7 +49,7 @@ function Projects() {
 
           <div className="d-flex align-items-center justify-content-center mb-5">
             <div className="search-container position-relative w-75">
-              <input 
+              <input
                 onChange={e => setsecretekey(e.target.value)}
                 type="text"
                 className="form-control py-3 ps-4 pe-5 rounded-pill shadow-sm"
@@ -60,7 +60,7 @@ function Projects() {
                 }}
               />
               <i className="fa-solid fa-magnifying-glass position-absolute"
-                style={{ 
+                style={{
                   right: '20px',
                   top: '50%',
                   transform: 'translateY(-50%)',
