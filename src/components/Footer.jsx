@@ -1,48 +1,112 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+
 function Footer() {
     return (
-        <div className='d-flex justify-content-center align-items-center flex-column flex-wrap W-100' style={{ width: '100%', height: '300px', backgroundColor: '#52a447' }}>
-            <div className="footer-content d-flex  justify-content-evenly   w-100">
-                <div className="websi " style={{ width: '400px' }}>
-                    <h4 style={{ color: 'black', overflow: 'hidden' }}><i className="fa-solid fa-list-check   align-items-center"></i>{" "}Project Fair</h4>
-                    <h6 style={{ color: 'black', overflow: 'hidden' }}>Designed and built with all the love in the world by the Bootstrap team with the help of our contributors.</h6>
-                    <h6 style={{ color: 'black', overflow: 'hidden' }}>Code licensed MIT, docs CC BY 3.0.</h6>
-                    <p>Currently v5.3.3.</p>
+        <footer className="py-5" style={{ 
+            background: 'linear-gradient(135deg, #52a447 0%, #2f7a24 100%)',
+            color: 'white'
+        }}>
+            <Container>
+                <Row className="g-4">
+                    <Col lg={4}>
+                        <div className="pe-lg-5">
+                            <h4 className="mb-4 d-flex align-items-center">
+                                <i className="fa-solid fa-list-check me-2"></i>
+                                Project Fair
+                            </h4>
+                            <p className="mb-4 text-white-50">
+                                Your one-stop destination for discovering and showcasing innovative software development projects. Join our community of talented developers!
+                            </p>
+                            <p className="mb-2 small text-white-50">
+                                Code licensed MIT, docs CC BY 3.0.
+                            </p>
+                            <p className="small text-white-50">
+                                Currently v5.3.3
+                            </p>
+                        </div>
+                    </Col>
+
+                    <Col sm={6} lg={2}>
+                        <h5 className="mb-4">Quick Links</h5>
+                        <div className="d-flex flex-column gap-2">
+                            <Link to={'/'} className="text-white-50 text-decoration-none hover-white">Home</Link>
+                            <Link to={'/projects'} className="text-white-50 text-decoration-none hover-white">Projects</Link>
+                            <Link to={'/dashboard'} className="text-white-50 text-decoration-none hover-white">Dashboard</Link>
+                        </div>
+                    </Col>
+
+                    <Col sm={6} lg={3}>
+                        <h5 className="mb-4">Resources</h5>
+                        <div className="d-flex flex-column gap-2">
+                            <a href="https://react.dev" target="_blank" rel="noopener noreferrer" 
+                                className="text-white-50 text-decoration-none hover-white">React</a>
+                            <a href="https://react-bootstrap.github.io" target="_blank" rel="noopener noreferrer"
+                                className="text-white-50 text-decoration-none hover-white">React Bootstrap</a>
+                            <a href="https://reactrouter.com" target="_blank" rel="noopener noreferrer"
+                                className="text-white-50 text-decoration-none hover-white">React Router</a>
+                        </div>
+                    </Col>
+
+                    <Col lg={3}>
+                        <h5 className="mb-4">Stay Connected</h5>
+                        <Form className="d-flex gap-2 mb-4">
+                            <Form.Control
+                                type="email"
+                                placeholder="Enter your email"
+                                className="rounded-pill"
+                                style={{ background: 'rgba(255,255,255,0.1)', border: 'none', color: 'white' }}
+                            />
+                            <Button 
+                                variant="light" 
+                                className="rounded-pill px-3"
+                                style={{ width: 'auto' }}
+                            >
+                                <i className="fa-solid fa-paper-plane"></i>
+                            </Button>
+                        </Form>
+                        <div className="d-flex gap-3">
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+                                className="text-white-50 text-decoration-none fs-5 hover-white">
+                                <i className="fa-brands fa-twitter"></i>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                                className="text-white-50 text-decoration-none fs-5 hover-white">
+                                <i className="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com" target="_blank" rel="noopener noreferrer"
+                                className="text-white-50 text-decoration-none fs-5 hover-white">
+                                <i className="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </Col>
+                </Row>
+
+                <hr className="my-4 opacity-25" />
+                
+                <div className="text-center small text-white-50">
+                    Copyright © {new Date().getFullYear()} Project Fair. All rights reserved.
                 </div>
+            </Container>
 
-                <div className="link d-flex flex-column ">
-                    <h4 style={{ overflow: 'hidden' }}>Links</h4>
-                    <Link to={'/'} style={{ textDecoration: 'none', color: 'black' }} >Home</Link>
-                    <Link to={'/cart'} style={{ textDecoration: 'none', color: 'black' }} >cart</Link>
-                    <Link to={'/wishlist'} style={{ textDecoration: 'none', color: 'black' }} >Wishlist</Link>
-
-                </div>
-
-                <div className="guides d-flex flex-column">
-                    <h4 style={{ overflow: 'hidden' }}>guides</h4>
-                    <Link to={'https://getbootstrap.com/'} className='' style={{ textDecoration: 'none', color: 'black' }} >React</Link>
-                    <Link to={'https://react-bootstrap.netlify.app/'} className='' style={{ textDecoration: 'none', color: 'black' }} >React Bootstrap</Link>
-                    <Link to={'https://www.npmjs.com/package/react-router-dom'} className='' style={{ textDecoration: 'none', color: 'black' }} >Routing</Link>
-
-                </div>
-                <div className="contacts d-flex flex-column flex-wrap">
-                    <h4 style={{ overflow: 'hidden' }}>Contact Us</h4>
-                    <div className='d-flex'>
-                        <input className='form-control' type="email" placeholder='Enter your email' />
-                        <div className='btn btn-primary ms-3'><i className="fa-duotone fa-solid fa-arrow-right"></i></div>
-                    </div>
-                    <div className='icons mt-3 d-flex justify-content-evenly fs-4'>
-                        <Link to={'https://getbootstrap.com/'} style={{ textDecoration: 'none', color: 'black' }} ><i className="fa-brands fa-twitter overflow-hidden"></i></Link>
-                        <Link to={'https://react-bootstrap.netlify.app/'} style={{ textDecoration: 'none', color: 'black' }} ><i className="fa-brands fa-linkedin overflow-hidden"></i></Link>
-                        <Link to={'https://www.npmjs.com/package/react-router-dom'} style={{ textDecoration: 'none', color: 'black' }} ><i className="fa-brands fa-github overflow-hidden"></i></Link>
-                        <Link to={'https://www.npmjs.com/package/react-router-dom'} style={{ textDecoration: 'none', color: 'black' }} ><i className="fa-brands fa-facebook overflow-hidden"></i></Link>
-
-                    </div>
-                </div>
-            </div >
-            <p style={{ color: 'black' }}>Copyright © 2024 Project Fair. Built with Docusaurus</p>
-        </div>
+            <style>
+                {`
+                    .hover-white:hover {
+                        color: white !important;
+                        transition: color 0.2s;
+                    }
+                    .form-control::placeholder {
+                        color: rgba(255,255,255,0.5);
+                    }
+                    .form-control:focus {
+                        background: rgba(255,255,255,0.15);
+                        box-shadow: none;
+                        color: white;
+                    }
+                `}
+            </style>
+        </footer>
     )
 }
 

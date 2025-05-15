@@ -11,11 +11,10 @@ function Header({ insideDashboard }) {
               <i className="fa-solid fa-list-check"></i>
               Project Fair</Link>
           </Navbar.Brand>
-          {
-            insideDashboard &&
-            <div className='btn btn-linkms-auto text-info fw-bolder fs-5 d-flex align-items-center '>Logout<i className="fa-solid fa-right-from-bracket"></i></div>
+        
+            <div className='btn btn-linkms-auto text-info fw-bolder fs-5 d-flex align-items-center text-danger '>Logout<i className="fa-solid fa-right-from-bracket"></i></div>
 
-          }        </Container>
+            </Container>
       </Navbar>
     </>
   )
