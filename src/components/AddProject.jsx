@@ -1,11 +1,9 @@
-
 import React from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-// ✅ Make sure to import the API function
-import { addProject } from '../services/allAPI'; // 🔁 Change to actual path where your API method exists
+import { addProject } from '../services/allAPI';
 
 function AddProject() {
   const [preview, setPreview] = useState("")
@@ -85,47 +83,162 @@ function AddProject() {
   return (
     <>
       <div className='mt-2'>
-        <Button variant="primary" onClick={handleShow}>
-          Add Project
+        <Button 
+          variant="success" 
+          onClick={handleShow}
+          className="rounded-pill px-4 d-flex align-items-center gap-2"
+          style={{
+            transition: 'all 0.3s ease',
+            background: 'linear-gradient(135deg, #52a447 0%, #2f7a24 100%)',
+            border: 'none'
+          }}
+          onMouseOver={e => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+          }}
+          onMouseOut={e => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
+        >
+          <i className="fa-solid fa-plus"></i>
+          <span>Add Project</span>
         </Button>
       </div>
 
-      <Modal show={show} onHide={handleClose} centered size='lg'>
-        <Modal.Header closeButton>
-          <Modal.Title>Project Details</Modal.Title>
+      <Modal 
+        show={show} 
+        onHide={handleClose} 
+        centered 
+        size='lg'
+        contentClassName="rounded-4 shadow-lg border-0"
+      >
+        <Modal.Header closeButton className="border-0 pb-0">
+          <Modal.Title className="fs-4">Add New Project</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <div className="row">
-            <div className="col">
-              <label>
-                <input type='file' style={{ display: 'none' }} onChange={e => setprojectDetails({ ...projectDetails, projectImage: e.target.files[0] })} />
-                <img
-                  style={{ height: '300px', width: '300px' }}
-                  className='image-fluid'
-                  src={
-                    preview
-                      ? preview
-                      : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM='
-                  }
-                  alt='profile picture'
+        <Modal.Body className="p-4">
+          <div className="row g-4">
+            <div className="col-md-6">
+              <label className="d-block cursor-pointer">
+                <input 
+                  type='file' 
+                  style={{ display: 'none' }} 
+                  onChange={e => setprojectDetails({ ...projectDetails, projectImage: e.target.files[0] })} 
                 />
+                <div 
+                  className="rounded-4 overflow-hidden shadow-sm position-relative"
+                  style={{ 
+                    aspectRatio: '1',
+                    cursor: 'pointer',
+                    background: '#f8f9fa'
+                  }}
+                  onMouseOver={e => e.currentTarget.style.opacity = '0.8'}
+                  onMouseOut={e => e.currentTarget.style.opacity = '1'}
+                >
+                  <img
+                    className="w-100 h-100"
+                    style={{
+                      objectFit: 'cover'
+                    }}
+                    src={preview || 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM='}
+                    alt='Project thumbnail'
+                  />
+                  <div 
+                    className="position-absolute top-50 start-50 translate-middle text-white text-center p-2 rounded-circle"
+                    style={{
+                      background: 'rgba(0,0,0,0.5)',
+                      width: '40px',
+                      height: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <i className="fa-solid fa-camera"></i>
+                  </div>
+                </div>
               </label>
             </div>
-            <div className="col ">
-              <div className=' mb-3 '><input type='text' className='form-control' placeholder='project title' value={projectDetails.title} onChange={e => setprojectDetails({ ...projectDetails, title: e.target.value })}></input></div>
-              <div className='mb-3'><input type='text' className='form-control ' placeholder='Language used' value={projectDetails.language} onChange={e => setprojectDetails({ ...projectDetails, language: e.target.value })} ></input></div>
-              <div className='mb-3'><input type='text' className='form-control ' placeholder='GitHub Link' value={projectDetails.github} onChange={e => setprojectDetails({ ...projectDetails, github: e.target.value })}></input></div>
-              <div className='mb-3'><input type='text' className='form-control ' placeholder='Website Link' value={projectDetails.website} onChange={e => setprojectDetails({ ...projectDetails, website: e.target.value })}></input></div>
-              <div className='mb-3'><input type='text' className='form-control ' placeholder='OverView' value={projectDetails.overview} onChange={e => setprojectDetails({ ...projectDetails, overview: e.target.value })}></input></div>
+            <div className="col-md-6">
+              <div className="d-flex flex-column gap-3">
+                <input 
+                  type='text' 
+                  className='form-control form-control-lg rounded-3' 
+                  placeholder='Project Title'
+                  value={projectDetails.title}
+                  onChange={e => setprojectDetails({ ...projectDetails, title: e.target.value })}
+                  style={{
+                    border: '1px solid #dee2e6',
+                    background: '#f8f9fa'
+                  }}
+                />
+                <input 
+                  type='text' 
+                  className='form-control form-control-lg rounded-3'
+                  placeholder='Technologies Used'
+                  value={projectDetails.language}
+                  onChange={e => setprojectDetails({ ...projectDetails, language: e.target.value })}
+                  style={{
+                    border: '1px solid #dee2e6',
+                    background: '#f8f9fa'
+                  }}
+                />
+                <input 
+                  type='url' 
+                  className='form-control form-control-lg rounded-3'
+                  placeholder='GitHub Repository URL'
+                  value={projectDetails.github}
+                  onChange={e => setprojectDetails({ ...projectDetails, github: e.target.value })}
+                  style={{
+                    border: '1px solid #dee2e6',
+                    background: '#f8f9fa'
+                  }}
+                />
+                <input 
+                  type='url' 
+                  className='form-control form-control-lg rounded-3'
+                  placeholder='Live Demo URL'
+                  value={projectDetails.website}
+                  onChange={e => setprojectDetails({ ...projectDetails, website: e.target.value })}
+                  style={{
+                    border: '1px solid #dee2e6',
+                    background: '#f8f9fa'
+                  }}
+                />
+                <textarea 
+                  className='form-control form-control-lg rounded-3'
+                  placeholder='Project Overview'
+                  value={projectDetails.overview}
+                  onChange={e => setprojectDetails({ ...projectDetails, overview: e.target.value })}
+                  rows="3"
+                  style={{
+                    border: '1px solid #dee2e6',
+                    background: '#f8f9fa',
+                    resize: 'none'
+                  }}
+                />
+              </div>
             </div>
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleAdd}>
-            Add
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
+        <Modal.Footer className="border-0 pt-0">
+          <Button 
+            variant="light" 
+            onClick={handleClose}
+            className="rounded-pill px-4"
+          >
             Cancel
+          </Button>
+          <Button 
+            variant="success" 
+            onClick={handleAdd}
+            className="rounded-pill px-4"
+            style={{
+              background: 'linear-gradient(135deg, #52a447 0%, #2f7a24 100%)',
+              border: 'none'
+            }}
+          >
+            Add Project
           </Button>
         </Modal.Footer>
       </Modal>

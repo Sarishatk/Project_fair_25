@@ -42,7 +42,7 @@ getUserProject()
     {  userProjects?.length>0? userProjects.map(project=>(<div className='border d-flex align-items-center rounded p-2'>
 <h5>{project.title}</h5>
 <div className='icon ms-auto'>
-    <button className='btn'><i class="fa-solid fa-pen-to-square"></i></button>
+    <button  className='btn'><i class="fa-solid fa-pen-to-square"></i></button>
     <button className='btn'><i class="fa-brands fa-github"></i></button>
     <button className='btn'><i class="fa-solid fa-trash"></i></button>
 </div>
