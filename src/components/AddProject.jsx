@@ -23,7 +23,7 @@ function AddProject() {
     } else {
       const reqBody = new FormData();
       reqBody.append("title", title);
-      reqBody.append("language", language); // ✅ fixed
+      reqBody.append("language", language);
       reqBody.append("overview", overview);
       reqBody.append("projectImage", projectImage);
       reqBody.append("github", github);
@@ -64,7 +64,7 @@ function AddProject() {
 
   const handleShow = () => setShow(true);
 
-  console.log(projectDetails);
+
 
   useEffect(() => {
     if (projectDetails.projectImage) {
@@ -169,7 +169,8 @@ function AddProject() {
                   onChange={e => setprojectDetails({ ...projectDetails, title: e.target.value })}
                   style={{
                     border: '1px solid #dee2e6',
-                    background: '#f8f9fa'
+                    background: '#ffffff',
+                    color: '#495057'
                   }}
                 />
                 <input 
@@ -180,7 +181,8 @@ function AddProject() {
                   onChange={e => setprojectDetails({ ...projectDetails, language: e.target.value })}
                   style={{
                     border: '1px solid #dee2e6',
-                    background: '#f8f9fa'
+                    background: '#ffffff',
+                    color: '#495057'
                   }}
                 />
                 <input 
@@ -191,7 +193,8 @@ function AddProject() {
                   onChange={e => setprojectDetails({ ...projectDetails, github: e.target.value })}
                   style={{
                     border: '1px solid #dee2e6',
-                    background: '#f8f9fa'
+                    background: '#ffffff',
+                    color: '#495057'
                   }}
                 />
                 <input 
@@ -202,7 +205,8 @@ function AddProject() {
                   onChange={e => setprojectDetails({ ...projectDetails, website: e.target.value })}
                   style={{
                     border: '1px solid #dee2e6',
-                    background: '#f8f9fa'
+                    background: '#ffffff',
+                    color: '#495057'
                   }}
                 />
                 <textarea 
@@ -213,13 +217,28 @@ function AddProject() {
                   rows="3"
                   style={{
                     border: '1px solid #dee2e6',
-                    background: '#f8f9fa',
+                    background: '#ffffff',
+                    color: '#495057',
                     resize: 'none'
                   }}
                 />
               </div>
             </div>
           </div>
+
+          <style>
+            {`
+              .form-control::placeholder {
+                color: #6c757d !important;
+                opacity: 0.8;
+              }
+              .form-control:focus {
+                background: #ffffff;
+                border-color: #52a447;
+                box-shadow: 0 0 0 0.2rem rgba(82, 164, 71, 0.25);
+              }
+            `}
+          </style>
         </Modal.Body>
         <Modal.Footer className="border-0 pt-0">
           <Button 

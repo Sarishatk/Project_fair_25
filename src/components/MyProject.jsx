@@ -17,9 +17,9 @@ function MyProject() {
       const result = await userProjectAPI(reqHeader)
       if (result.status === 200) {
         setuserProjects(result.data);
-
+ console.log(result.data);
       } else {
-        console.log(result);
+       
         console.log(result.response.data);
 
 
@@ -43,7 +43,7 @@ function MyProject() {
           <h5>{project.title}</h5>
           <div className='icon ms-auto'>
             <button className='btn'><i class="fa-solid fa-pen-to-square"></i></button>
-            <button className='btn'><i class="fa-brands fa-github"></i></button>
+            <a  href={`${project.github}`}  className='btn'><i class="fa-brands fa-github"></i></a>
             <button className='btn'><i class="fa-solid fa-trash"></i></button>
           </div>
         </div>
