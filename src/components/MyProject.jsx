@@ -9,7 +9,7 @@ function MyProject() {
     // before calling api token is created here
     if(sessionStorage.getItem('token')){
     const token =   sessionStorage.getItem('token')
-    reqHeader = {
+     const reqHeader = {
           "content-type": "multipart/form-data",
           "Authorization": `Bearer ${token}`,
         };
