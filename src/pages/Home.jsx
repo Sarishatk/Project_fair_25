@@ -34,7 +34,7 @@ function Home() {
   return (
     <>
       {/* Hero Section */}
-      <div className="hero-section position-relative" style={{ 
+      <div className="hero-section position-relative" style={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #52a447 0%, #2f7a24 100%)',
         overflow: 'hidden'
@@ -63,9 +63,9 @@ function Home() {
             </Col>
             <Col lg={6} className="mt-5 mt-lg-0">
               <div className="hero-image text-center animate__animated animate__fadeInRight overflow-hidden">
-                <img 
-                  src="https://avatars.githubusercontent.com/u/87497641?v=4" 
-                  alt="Project Fair Hero" 
+                <img
+                  src="https://avatars.githubusercontent.com/u/87497641?v=4"
+                  alt="Project Fair Hero"
                   className="img-fluid rounded-circle shadow-lg "
                   style={{ maxWidth: '400px', transform: 'rotate(5deg)' }}
                 />
@@ -99,8 +99,8 @@ function Home() {
           </div>
 
           <div className="text-center">
-            <Link 
-              to={'/projects'} 
+            <Link
+              to={'/projects'}
               className="btn btn-outline-success btn-lg rounded-pill px-4"
             >
               View More Projects <i className="fa-solid fa-arrow-right ms-2"></i>

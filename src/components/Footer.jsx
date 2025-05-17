@@ -4,7 +4,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 
 function Footer() {
     return (
-        <footer className="py-5" style={{ 
+        <footer className="py-5" style={{
             background: 'linear-gradient(135deg, #52a447 0%, #2f7a24 100%)',
             color: 'white'
         }}>
@@ -40,7 +40,7 @@ function Footer() {
                     <Col sm={6} lg={3}>
                         <h5 className="mb-4">Resources</h5>
                         <div className="d-flex flex-column gap-2">
-                            <a href="https://react.dev" target="_blank" rel="noopener noreferrer" 
+                            <a href="https://react.dev" target="_blank" rel="noopener noreferrer"
                                 className="text-white-50 text-decoration-none hover-white">React</a>
                             <a href="https://react-bootstrap.github.io" target="_blank" rel="noopener noreferrer"
                                 className="text-white-50 text-decoration-none hover-white">React Bootstrap</a>
@@ -58,8 +58,8 @@ function Footer() {
                                 className="rounded-pill"
                                 style={{ background: 'rgba(255,255,255,0.1)', border: 'none', color: 'white' }}
                             />
-                            <Button 
-                                variant="light" 
+                            <Button
+                                variant="light"
                                 className="rounded-pill px-3"
                                 style={{ width: 'auto' }}
                             >
@@ -84,7 +84,7 @@ function Footer() {
                 </Row>
 
                 <hr className="my-4 opacity-25" />
-                
+
                 <div className="text-center small text-white-50">
                     Copyright © {new Date().getFullYear()} Project Fair. All rights reserved.
                 </div>
