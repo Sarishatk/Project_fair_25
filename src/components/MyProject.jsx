@@ -1,7 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AddProject from './AddProject'
-
+import { userProjectAPI } from '../services/allAPI';
 function MyProject() {
+
+  const [userProjects,setuserProjects] = useState([])
+
+  const getUserProject = async ()=>{
+    // before calling api token is created here
+    if(sessionStorage.getItem('token')){
+    const token =   sessionStorage.getItem('token')
+    reqHeader = {
+          "content-type": "multipart/form-data",
+          "Authorization": `Bearer ${token}`,
+        };
+
+        const result = await userProjectAPI(reqHeader)
+        if(result.status === 200){
+         setuserProjects(result.data);
+          
+        }else{
+          console.log(result);
+          console.log(result.response.data);
+          
+          
+        }
+    }
+  }
+
+  useEffect(()=>{
+getUserProject()
+  },[])
+
   return (
    <div className='card shadow mt-2 container-fluid'>
     <div className='d-flex'>
