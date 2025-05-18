@@ -45,9 +45,7 @@ function Projects() {
               Discover Amazing Projects
             </h1>
             <p className="text-muted">Explore innovative projects from our talented community</p>
-          </div>
-
-          <div className="d-flex align-items-center justify-content-center mb-5">
+          </div>          <div className="d-flex align-items-center justify-content-center mb-5">
             <div className="search-container position-relative w-75">
               <input
                 onChange={e => setsecretekey(e.target.value)}
@@ -55,8 +53,10 @@ function Projects() {
                 className="form-control py-3 ps-4 pe-5 rounded-pill shadow-sm"
                 placeholder="Search projects by technologies..."
                 style={{
-                  border: 'none',
-                  backgroundColor: '#ffffff'
+                  border: '1px solid #dee2e6',
+                  backgroundColor: '#ffffff',
+                  color: '#495057',
+                  transition: 'all 0.3s ease'
                 }}
               />
               <i className="fa-solid fa-magnifying-glass position-absolute"
@@ -68,6 +68,19 @@ function Projects() {
                 }}
               ></i>
             </div>
+
+            <style>
+              {`
+                .search-container .form-control::placeholder {
+                  color: #6c757d !important;
+                  opacity: 0.8;
+                }
+                .search-container .form-control:focus {
+                  border-color: #52a447;
+                  box-shadow: 0 0 0 0.2rem rgba(82, 164, 71, 0.15);
+                }
+              `}
+            </style>
           </div>
 
           {loading ? (

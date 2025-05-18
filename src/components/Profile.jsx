@@ -23,15 +23,63 @@ function Profile() {
               src="https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="
               alt="Profile"
             />
-          </label>
-          <div className="mt-3">
-            <input type="text" className="form-control mb-2" placeholder="Username" />
-            <input type="text" className="form-control mb-2" placeholder="GitHub" />
-            <input type="text" className="form-control" placeholder="LinkedIn" />
+          </label>          <div className="mt-3">
+            <input 
+              type="text" 
+              className="form-control form-control-lg mb-2 rounded-3" 
+              placeholder="Username" 
+              style={{
+                border: '1px solid #dee2e6',
+                background: '#ffffff',
+                color: '#495057'
+              }}
+            />
+            <input 
+              type="text" 
+              className="form-control form-control-lg mb-2 rounded-3" 
+              placeholder="GitHub" 
+              style={{
+                border: '1px solid #dee2e6',
+                background: '#ffffff',
+                color: '#495057'
+              }}
+            />
+            <input 
+              type="text" 
+              className="form-control form-control-lg rounded-3" 
+              placeholder="LinkedIn" 
+              style={{
+                border: '1px solid #dee2e6',
+                background: '#ffffff',
+                color: '#495057'
+              }}
+            />
           </div>
           <div>
-            <button className='btn btn-success mt-2 w-100'>Update</button>
+            <button 
+              className='btn btn-success mt-2 w-100 rounded-3 py-2'
+              style={{
+                background: 'linear-gradient(135deg, #52a447 0%, #2f7a24 100%)',
+                border: 'none'
+              }}
+            >
+              Update Profile
+            </button>
           </div>
+
+          <style>
+            {`
+              .form-control::placeholder {
+                color: #6c757d !important;
+                opacity: 0.8;
+              }
+              .form-control:focus {
+                background: #ffffff;
+                border-color: #52a447;
+                box-shadow: 0 0 0 0.2rem rgba(82, 164, 71, 0.25);
+              }
+            `}
+          </style>
         </div>
       </Collapse>
 
