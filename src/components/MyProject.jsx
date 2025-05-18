@@ -10,20 +10,20 @@ function MyProject() {
     if (sessionStorage.getItem('token')) {
       const token = sessionStorage.getItem('token')
       const reqHeader = {
-        "content-type": "multipart/form-data",
+        "content-type": "application/json",
         "Authorization": `Bearer ${token}`,
       };
 
-      const result = await userProjectAPI(reqHeader)
-      if (result.status === 200) {
-        setuserProjects(result.data);
- console.log(result.data);
-      } else {
-       
-        console.log(result.response.data);
-
-
-      }
+        const result = await userProjectAPI(reqHeader)
+        if(result.status === 200){
+         setuserProjects(result.data);
+          
+        }else{
+          console.log(result);
+          console.log(result.response.data);
+          
+          
+        }
     }
   }
 
@@ -35,23 +35,23 @@ function MyProject() {
     <div className='card shadow mt-2 container-fluid'>
       <div className='d-flex'>
         <h2>My projects</h2>
-        <div className='ms-auto'><AddProject /></div>
-      </div>
-      <div className='mt-4'>
-        {/* collection of user projects */}
-        {userProjects?.length > 0 ? userProjects.map(project => (<div className='border d-flex align-items-center rounded p-2'>
-          <h5>{project.title}</h5>
-          <div className='icon ms-auto'>
-            <button className='btn'><i class="fa-solid fa-pen-to-square"></i></button>
-            <a  href={`${project.github}`}  target='_blank' className='btn'><i class="fa-brands fa-github"></i></a>
-            <button className='btn'><i class="fa-solid fa-trash"></i></button>
-          </div>
+        <div className='ms-auto'><AddProject/></div>
         </div>
-        )) :
-          <p className='text-danger fw-bolder fs-5'>No projects uploaded yet!!!</p>
-        }
-      </div>
-    </div>
+        <div className='mt-4'>
+     {/* collection of user projects */}
+    {  userProjects?.length>0? userProjects.map(project=>(<div className='border d-flex align-items-center rounded p-2'>
+<h5>{project.title}</h5>
+<div className='icon ms-auto'>
+    <button  className='btn'><i className="fa-solid fa-pen-to-square"></i></button>
+    <button className='btn'><i className="fa-brands fa-github"></i></button>
+    <button className='btn'><i className="fa-solid fa-trash"></i></button>
+</div>
+     </div>
+     )):
+     <p className='text-danger fw-bolder fs-5'>No projects uploaded yet!!!</p>
+    }
+        </div>
+   </div>
   )
 }
 
