@@ -7,7 +7,7 @@ import { addProject } from '../services/allAPI';
 import {addProjectResponseContext} from '../ContextSareApi/ContextShare'
 
 function AddProject() {
-  const [addProjectResponse,setaddProjectResponse] = useContext(addProjectResponseContext)
+  const {addProjectResponse,setaddProjectResponse} = useContext(addProjectResponseContext)
   const [preview, setPreview] = useState("")
   const [show, setShow] = useState(false);
 

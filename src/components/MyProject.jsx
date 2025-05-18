@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import {addProjectResponseContext} from '../ContextSareApi/ContextShare'
 import AddProject from './AddProject'
 import { userProjectAPI } from '../services/allAPI';
 function MyProject() {
 
   const [userProjects, setuserProjects] = useState([])
- const [addProjectResponse,setaddProjectResponse] = useContext(addProjectResponseContext)
+ const {addProjectResponse,setaddProjectResponse} = useContext(addProjectResponseContext)
   const getUserProject = async () => {
     // before calling api token is created here
     if (sessionStorage.getItem('token')) {
@@ -29,7 +30,7 @@ function MyProject() {
 
   useEffect(() => {
     getUserProject()
-  }, [])
+  }, [addProjectResponse])
 
   return (
     <div className='card shadow mt-2 container-fluid'>
