@@ -9,7 +9,7 @@ function Header({ insideDashboard }) {
           <Navbar.Brand >
             <Link to={'/'} style={{ textDecoration: 'none', color: 'white' }} className='fw-bolder d-flex w-100 align-items-center' >
               <i className="fa-solid fa-list-check"></i>
-              Project Fair</Link>
+             Projexpo</Link>
           </Navbar.Brand>
         
             <div className='btn btn-linkms-auto text-info fw-bolder fs-5 d-flex align-items-center text-danger '>Logout<i className="fa-solid fa-right-from-bracket"></i></div>

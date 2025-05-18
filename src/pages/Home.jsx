@@ -45,7 +45,7 @@ function Home() {
               <div className="hero-content pe-lg-5">
                 <h1 className="display-4 fw-bold mb-4 animate__animated animate__fadeInUp">
                   <i className="fa-solid fa-list-check me-3 overflow-hidden"></i>
-                  Project Fair
+                Projexpo
                 </h1>
                 <p className="lead mb-4 animate__animated animate__fadeInUp animate__delay-1s">
                   Your one-stop destination for software development projects. Add, manage, and discover innovative projects from developers around the world.

@@ -14,7 +14,7 @@ function Footer() {
                         <div className="pe-lg-5">
                             <h4 className="mb-4 d-flex align-items-center">
                                 <i className="fa-solid fa-list-check me-2"></i>
-                                Project Fair
+                               Projexpo
                             </h4>
                             <p className="mb-4 text-white-50">
                                 Your one-stop destination for discovering and showcasing innovative software development projects. Join our community of talented developers!
@@ -86,7 +86,7 @@ function Footer() {
                 <hr className="my-4 opacity-25" />
 
                 <div className="text-center small text-white-50">
-                    Copyright © {new Date().getFullYear()} Project Fair. All rights reserved.
+                    Copyright © {new Date().getFullYear()} Projexpo. All rights reserved.
                 </div>
             </Container>
 
