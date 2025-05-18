@@ -4,7 +4,7 @@ import { userProjectAPI } from '../services/allAPI';
 function MyProject() {
 
   const [userProjects, setuserProjects] = useState([])
-
+ const [addProjectResponse,setaddProjectResponse] = useContext(addProjectResponseContext)
   const getUserProject = async () => {
     // before calling api token is created here
     if (sessionStorage.getItem('token')) {

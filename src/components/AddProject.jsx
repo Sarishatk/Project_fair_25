@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { addProject } from '../services/allAPI';
+import {addProjectResponseContext} from '../ContextSareApi/ContextShare'
 
 function AddProject() {
+  const [addProjectResponse,setaddProjectResponse] = useContext(addProjectResponseContext)
   const [preview, setPreview] = useState("")
   const [show, setShow] = useState(false);
 
@@ -41,7 +43,7 @@ function AddProject() {
           if (result.status === 201) {
             console.log(result.data);
             handleClose();
-            toast.success("Project added"); // ✅ now this will show
+           setaddProjectResponse(result.data)
           } else {
             toast.warning(result?.data?.message || "Something went wrong");
           }
