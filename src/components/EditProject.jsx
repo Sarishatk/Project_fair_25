@@ -9,7 +9,20 @@ import { ToastContainer, toast } from 'react-toastify';
 
 function EditProject({ project }) {
 
- 
+    const [show, setShow] = useState(false);    const [projectData, setProjectData] = useState({
+        title: project?.title || '',
+        language: project?.language || '',
+        github: project?.github || '',
+        website: project?.website || '',
+        overview: project?.overview || '',
+        projectImage: project?.projectImage || ''
+    });
+    const [preview, setPreview] = useState("");
+
+    const handleClose = () => {
+        setShow(false);
+        setPreview("");
+    };
     
     const handleShow = () => setShow(true);
 
