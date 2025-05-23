@@ -52,8 +52,9 @@ preview? reqBody.append("projectImage", projectImage):  reqBody.append("projectI
         }else{
 const reqHeader = {
     "content-type": "application/json",
-    
+
 }
+// api call to update project
         }
     }
   }
