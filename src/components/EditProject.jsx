@@ -9,7 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 
 function EditProject({ project }) {
 
-    const [show, setShow] = useState(false);    const [projectData, setProjectData] = useState({
+    const [show, setShow] = useState(false);     const [projectData, setProjectData] = useState({
+        _id: project?._id || '',
         title: project?.title || '',
         language: project?.language || '',
         github: project?.github || '',
@@ -32,13 +33,28 @@ function EditProject({ project }) {
         }
     }, [projectData.projectImage]);
   const  onUpdateNewProject=()=>{
-    const {title, language, overview, projectImage, github, website} = projectData
+    const {_id,title, language, overview, projectImage, github, website} = projectData
     if (!title || !language || !overview || !projectImage || !github || !website){
         toast.info("please fill the form")
-
-
-    }else{
-
+   }else{
+const reqBody = new FormData();
+reqBody.append("title", title);
+reqBody.append("language", language);
+reqBody.append("overview", overview);
+reqBody.append("github", tigithubtle);
+reqBody.append("website", website)
+preview? reqBody.append("projectImage", projectImage):  reqBody.append("projectImage", project.projectImage);
+        if(preview){
+            const reqHeader = {
+               "content-type": "multipart/form-data",
+          "Authorization": `Bearer ${token}`,         }
+        //   api call to update project
+        }else{
+const reqHeader = {
+    "content-type": "application/json",
+    
+}
+        }
     }
   }
 
