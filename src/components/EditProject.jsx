@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { BASE_URL } from '../services/baseUrl';
-import { addProject } from '../services/allAPI';
-import {addProjectResponseContext} from '../ContextSareApi/ContextShare'
+import { addProject, editProject } from '../services/allAPI';
+import { addProjectResponseContext } from '../ContextSareApi/ContextShare'
 import { ToastContainer, toast } from 'react-toastify';
 
 
 function EditProject({ project }) {
-
-    const [show, setShow] = useState(false);     const [projectData, setProjectData] = useState({
+    const [token] = useState(sessionStorage.getItem("token"));
+    const [show, setShow] = useState(false);
+    const [projectData, setProjectData] = useState({
         _id: project?._id || '',
         title: project?.title || '',
         language: project?.language || '',
@@ -18,13 +19,14 @@ function EditProject({ project }) {
         overview: project?.overview || '',
         projectImage: project?.projectImage || ''
     });
+    
     const [preview, setPreview] = useState("");
 
     const handleClose = () => {
         setShow(false);
         setPreview("");
     };
-    
+
     const handleShow = () => setShow(true);
 
     useEffect(() => {
@@ -32,32 +34,57 @@ function EditProject({ project }) {
             setPreview(URL.createObjectURL(projectData.projectImage));
         }
     }, [projectData.projectImage]);
-  const  onUpdateNewProject=()=>{
-    const {_id,title, language, overview, projectImage, github, website} = projectData
-    if (!title || !language || !overview || !projectImage || !github || !website){
-        toast.info("please fill the form")
-   }else{
-const reqBody = new FormData();
-reqBody.append("title", title);
-reqBody.append("language", language);
-reqBody.append("overview", overview);
-reqBody.append("github", tigithubtle);
-reqBody.append("website", website)
-preview? reqBody.append("projectImage", projectImage):  reqBody.append("projectImage", project.projectImage);
-        if(preview){
-            const reqHeader = {
-               "content-type": "multipart/form-data",
-          "Authorization": `Bearer ${token}`,         }
-        //   api call to update project
-        }else{
-const reqHeader = {
-    "content-type": "application/json",
+    const onUpdateNewProject = async () => {
+        const { _id, title, language, overview, projectImage, github, website } = projectData
+        console.log(_id);
+        
+        const token = sessionStorage.getItem("token");
+        if (!title || !language || !overview || !projectImage || !github || !website) {
+            toast.info("please fill the form")
+        } else {
+            const reqBody = new FormData();
+            reqBody.append("title", title);
+            reqBody.append("language", language);
+            reqBody.append("overview", overview);
+            reqBody.append("github", github);
+            reqBody.append("website", website)
+            preview ? reqBody.append("projectImage", projectImage) : reqBody.append("projectImage", project.projectImage);
+            if (preview) {
+                const reqHeader = {
+                    "content-type": "multipart/form-data",
+                    "Authorization": `Bearer ${token}`
+                }
+                //   api call to update project
+                const result = await editProject(_id, reqBody, reqHeader)
+                if (result.status === 200) {
+                    handleClose()
+                    // pass response to my project 
 
-}
-// api call to update project
+                } else {
+                    console.log(result);
+                    toast.error(result.response.data)
+
+                }
+            } else {
+                const reqHeader = {
+                    "content-type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+                // api call to update project
+                const result = await editProject(_id, reqBody, reqHeader)
+
+                if (result.status === 200) {
+                    handleClose()
+                    // pass response to my project 
+
+                } else {
+                    console.log(result);
+                    toast.error(result.response.data)
+
+                }
+            }
         }
     }
-  }
 
     return (
         <>
@@ -117,19 +144,19 @@ const reqHeader = {
                             </label>
                         </div>
                         <div className="col-md-6">
-                            <div className="d-flex flex-column gap-3">               
-                                 <input
-                                type='text'
-                                className='form-control form-control-lg rounded-3'
-                                placeholder='Project Title'
-                                value={projectData.title}
-                                onChange={(e) => setProjectData({ ...projectData, title: e.target.value })}
-                                style={{
-                                    border: '1px solid #dee2e6',
-                                    background: '#ffffff',
-                                    color: '#495057'
-                                }}
-                            />
+                            <div className="d-flex flex-column gap-3">
+                                <input
+                                    type='text'
+                                    className='form-control form-control-lg rounded-3'
+                                    placeholder='Project Title'
+                                    value={projectData.title}
+                                    onChange={(e) => setProjectData({ ...projectData, title: e.target.value })}
+                                    style={{
+                                        border: '1px solid #dee2e6',
+                                        background: '#ffffff',
+                                        color: '#495057'
+                                    }}
+                                />
                                 <input
                                     type='text'
                                     className='form-control form-control-lg rounded-3'
@@ -210,7 +237,7 @@ const reqHeader = {
                             // Add your update logic here
                             console.log("Updated Project Data:", projectData);
                             handleClose();
-                           onUpdateNewProject();
+                            onUpdateNewProject();
                         }}
                         className="rounded-pill px-4"
                         style={{
@@ -221,7 +248,7 @@ const reqHeader = {
                         Update Project
                     </Button>
                 </Modal.Footer>
-                                  <ToastContainer position='top-right' autoClose={2000} theme='colored' />
+                <ToastContainer position='top-right' autoClose={2000} theme='colored' />
 
             </Modal>
 

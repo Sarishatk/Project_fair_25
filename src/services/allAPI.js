@@ -32,6 +32,6 @@ export const userProjectAPI = async (reqHeader) => {
 };
 // edit project
 
-export const updateProject  = async (projectId,reqBody,reqHeader) => {
-    return await commonAPI("PUT", `${BASE_URL}/edit/${projectId}`, reqBody, reqHeader);
+export const editProject  = async (projectId,reqBody,reqHeader) => {
+    return await commonAPI("PUT", `${BASE_URL}/projects/edit/${projectId}`, reqBody, reqHeader);
 };
