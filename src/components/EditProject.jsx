@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { EditShareResponseContext } from '../ContextSareApi/ContextShare';
 import { BASE_URL } from '../services/baseUrl';
 import { addProject, editProject } from '../services/allAPI';
 import { addProjectResponseContext } from '../ContextSareApi/ContextShare'
@@ -8,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 function EditProject({ project }) {
+    const { editResponse, seteditResponse } = useContext(EditShareResponseContext)
     const [token] = useState(sessionStorage.getItem("token"));
     const [show, setShow] = useState(false);
     const [projectData, setProjectData] = useState({
@@ -19,7 +21,7 @@ function EditProject({ project }) {
         overview: project?.overview || '',
         projectImage: project?.projectImage || ''
     });
-    
+
     const [preview, setPreview] = useState("");
 
     const handleClose = () => {
@@ -37,7 +39,7 @@ function EditProject({ project }) {
     const onUpdateNewProject = async () => {
         const { _id, title, language, overview, projectImage, github, website } = projectData
         console.log(_id);
-        
+
         const token = sessionStorage.getItem("token");
         if (!title || !language || !overview || !projectImage || !github || !website) {
             toast.info("please fill the form")
@@ -59,7 +61,7 @@ function EditProject({ project }) {
                 if (result.status === 200) {
                     handleClose()
                     // pass response to my project 
-
+                    seteditResponse(result.data)
                 } else {
                     console.log(result);
                     toast.error(result.response.data)
@@ -76,7 +78,7 @@ function EditProject({ project }) {
                 if (result.status === 200) {
                     handleClose()
                     // pass response to my project 
-
+                    seteditResponse(result.data)
                 } else {
                     console.log(result);
                     toast.error(result.response.data)
