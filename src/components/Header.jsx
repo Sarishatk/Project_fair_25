@@ -1,7 +1,16 @@
 import React from 'react'
 import { Navbar, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 function Header({ insideDashboard }) {
+const Navigate = useNavigate()
+// navigate to landing page
+const handleLogout = ()=>{
+  // remove all existing user details from browser storage
+sessionStorage.removeItem("existingUser")
+sessionStorage.removeItem("token")
+Navigate('/')
+}
+
   return (
     <>
       <Navbar style={{ backgroundColor: '#52a447' }} className='top-0 w-100'>
@@ -12,8 +21,9 @@ function Header({ insideDashboard }) {
              Projexpo</Link>
           </Navbar.Brand>
         
-            <div className='btn btn-linkms-auto text-info fw-bolder fs-5 d-flex align-items-center text-danger '>Logout<i className="fa-solid fa-right-from-bracket"></i></div>
-
+{  insideDashboard &&         
+ <button  onClick={handleLogout} className='btn btn-linkms-auto text-info fw-bolder fs-5 d-flex align-items-center text-danger '>Logout<i className="fa-solid fa-right-from-bracket"></i></button>
+}
             </Container>
       </Navbar>
     </>
