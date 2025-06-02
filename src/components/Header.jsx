@@ -1,6 +1,8 @@
 import React from 'react'
 import { Navbar, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom'
+import { TokenAuthContext } from '../ContextSareApi/TokenAuth';
+import { useContext } from 'react';
 function Header({ insideDashboard }) {
 const Navigate = useNavigate()
   const {isAutherized, setisAutherized} = useContext(TokenAuthContext)
