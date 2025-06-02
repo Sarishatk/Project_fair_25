@@ -3,11 +3,14 @@ import { Navbar, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom'
 function Header({ insideDashboard }) {
 const Navigate = useNavigate()
+  const {isAutherized, setisAutherized} = useContext(TokenAuthContext)
+
 // navigate to landing page
 const handleLogout = ()=>{
   // remove all existing user details from browser storage
 sessionStorage.removeItem("existingUser")
 sessionStorage.removeItem("token")
+setisAutherized(false)
 Navigate('/')
 }
 
