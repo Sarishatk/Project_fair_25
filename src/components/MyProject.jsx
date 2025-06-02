@@ -2,8 +2,9 @@ import React, { useEffect, useState, useContext } from 'react'
 import {addProjectResponseContext} from '../ContextSareApi/ContextShare'
 import { EditShareResponseContext } from '../ContextSareApi/ContextShare';
 import AddProject from './AddProject'
-import { userProjectAPI } from '../services/allAPI';
+import { deleteProject, userProjectAPI } from '../services/allAPI';
 import EditProject from './EditProject';
+import { toast } from 'react-toastify';
 function MyProject() {
 
   const [userProjects, setuserProjects] = useState([])
@@ -36,6 +37,22 @@ function MyProject() {
     getUserProject()
   }, [addProjectResponse,editResponse])
 
+const handleDeleteProject = async (id)=>{
+  const token = sessionStorage.getItem('token')
+  const reqHeader = {
+                    "content-type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+                // api call to delete project
+                const result = await deleteProject(id, reqHeader)
+                if(result.status === 200){
+                  // page reload
+                  getUserProject()
+                }else{
+                  toast.error(result.response.data)
+                }
+}
+
   return (
     <div className='card shadow mt-2 mb-3 container-fluid'>
       <div className='d-flex'>
@@ -49,7 +66,7 @@ function MyProject() {
           <div className='icon ms-auto'>
            <EditProject project={project}/>
             <button className='btn'><i className="fa-brands fa-github"></i></button>
-            <button className='btn'><i className="fa-solid fa-trash"></i></button>
+            <button  onClick={()=>handleDeleteProject(project._id)} className='btn'><i className="fa-solid fa-trash"></i></button>
           </div>
         </div>
         )) :
