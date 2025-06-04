@@ -12,7 +12,6 @@ function Profile() {
   useEffect(() => {
     if (sessionStorage.getItem("existingUser")) {
       const user = JSON.parse(sessionStorage.getItem("existingUser"))
-
       setprofileData({ ...profileData, username: user.username, password: user.password, email: user.email, github: user.github, linkedin: user.linkedin ,profile: user.profile}
       )
     }
