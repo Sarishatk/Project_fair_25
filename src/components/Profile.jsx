@@ -14,6 +14,7 @@ function Profile() {
       const user = JSON.parse(sessionStorage.getItem("existingUser"))
       setprofileData({ ...profileData, username: user.username, password: user.password, email: user.email, github: user.github, linkedin: user.linkedin ,profile: user.profile}
       )
+      setexistingImage(user.profile)
     }
   },[])
 
@@ -40,7 +41,7 @@ if(profileData.profile){
             <input style={{ display: 'none' }} type="file" />
             <img
               style={{ height: '200px', width: '200px' }}
-              src="https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="
+              src={preview?preview:`${BASE_URL}/uploads/${existingImage}`}
               alt="Profile"
             />
           </label>          <div className="mt-3">
