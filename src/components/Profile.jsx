@@ -1,9 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { use } from 'react';
 import { Collapse } from 'react-bootstrap';
 
 function Profile() {
   const [open, setOpen] = useState(false);
+  const [profileData, setprofileData] = useState({
+    username: "", password: "", email: "", github: "", linkedin: "",profile: ""
+  })
+  const [existingImage, setexistingImage] = useState("")
+  const [preview, setPreview] = useState("")
+  useEffect(() => {
+    if (sessionStorage.getItem("existingUser")) {
+      const user = JSON.parse(sessionStorage.getItem("existingUser"))
 
+      setprofileData({ ...profileData, username: user.username, password: user.password, email: user.email, github: user.github, linkedin: user.linkedin ,profile: user.profile}
+      )
+    }
+  },[])
+
+  useEffect(()=>{
+if(profileData.profile){
+   setPreview(URL.createObjectURL(profileData.profile))
+}else{
+  setPreview("")
+}
+  },[profileData.profile])
   return (
     <div style={{ width: '500px', height: '400px' }} className="container-fluid   p-4 mb-2 me-2">
       <div className="d-flex justify-content-between">
@@ -24,30 +45,31 @@ function Profile() {
               alt="Profile"
             />
           </label>          <div className="mt-3">
-            <input 
-              type="text" 
-              className="form-control form-control-lg mb-2 rounded-3" 
-              placeholder="Username" 
+            <input
+
+              type="text"
+              className="form-control form-control-lg mb-2 rounded-3"
+              placeholder="Username"
               style={{
                 border: '1px solid #dee2e6',
                 background: '#ffffff',
                 color: '#495057'
               }}
             />
-            <input 
-              type="text" 
-              className="form-control form-control-lg mb-2 rounded-3" 
-              placeholder="GitHub" 
+            <input
+              type="text"
+              className="form-control form-control-lg mb-2 rounded-3"
+              placeholder="GitHub"
               style={{
                 border: '1px solid #dee2e6',
                 background: '#ffffff',
                 color: '#495057'
               }}
             />
-            <input 
-              type="text" 
-              className="form-control form-control-lg rounded-3" 
-              placeholder="LinkedIn" 
+            <input
+              type="text"
+              className="form-control form-control-lg rounded-3"
+              placeholder="LinkedIn"
               style={{
                 border: '1px solid #dee2e6',
                 background: '#ffffff',
@@ -56,7 +78,7 @@ function Profile() {
             />
           </div>
           <div>
-            <button 
+            <button
               className='btn btn-success mt-2 w-100 rounded-3 py-2'
               style={{
                 background: 'linear-gradient(135deg, #52a447 0%, #2f7a24 100%)',
